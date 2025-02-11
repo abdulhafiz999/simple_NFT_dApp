@@ -1,0 +1,17 @@
+{
+  "name": "hardhat-project",
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "hardhat": "^2.22.18"
+  },
+  "dependencies": {
+    "@heroicons/react": "^2.2.0",
+    "@openzeppelin/contracts": "^5.2.0",
+    "@rainbow-me/rainbowkit": "^2.2.3",
+    "dotenv": "^16.4.7",
+    "next-nprogress-bar": "^2.4.4",
+    "next-themes": "^0.4.4",
+    "react-hot-toast": "^2.5.1",
+    "usehooks-ts": "^3.1.1"
+  }
+}
