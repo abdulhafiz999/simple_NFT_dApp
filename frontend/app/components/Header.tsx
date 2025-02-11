@@ -59,7 +59,7 @@ export const Header = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
   return (
-    <div className="sticky top-0 navbar bg-black min-h-0 flex-shrink-0 justify-between z-20 shadow-md shadow-secondary px-4">
+    <div className="sticky top-0 navbar dark:bg-black bg-white min-h-0 flex-shrink-0 justify-between z-20 shadow-md shadow-secondary px-4">
       <div className="navbar-start mx-auto w-auto">
         <div className="lg:hidden dropdown">
           <label

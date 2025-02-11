@@ -2,10 +2,10 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
-:root,
+/* :root,
 [data-theme] {
-  background: #000;
-}
+  background: cadetblue;
+} */
 
 
 body {
