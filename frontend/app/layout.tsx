@@ -9,7 +9,7 @@ export const metadata = getMetadata({
   description: "Built with HackerBoost",
 });
 
-const ScaffoldEthApp = ({ children }: { children: React.ReactNode }) => {
+const HackerBoostNFTAppLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <html suppressHydrationWarning>
       <body>
@@ -21,4 +21,4 @@ const ScaffoldEthApp = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-export default ScaffoldEthApp;
+export default HackerBoostNFTAppLayout;

@@ -15,7 +15,7 @@ export const MyHoldings = ({
   useEffect(() => {
     if (!isConnected) return;
     refreshNFTs();
-  }, [isConnected]); // ✅ Refreshes when minting is done
+  }, [isConnected]); // Refreshes when minting is done
   
 
   if (!isConnected) {

@@ -100,7 +100,7 @@ export const AddressInput = ({ value, name, placeholder, onChange, disabled }: C
                 }
               </span>
             ) : null}
-            <span className="text-accent px-2">{enteredEnsName ?? ensName}</span>
+            <span className="text-black px-2">{enteredEnsName ?? ensName}</span>
           </div>
         ) : (
           (isEnsNameLoading || isEnsAddressLoading) && (

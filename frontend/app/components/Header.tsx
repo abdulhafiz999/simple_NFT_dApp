@@ -88,7 +88,7 @@ export const Header = () => {
               <Image alt="logo" className="cursor-pointer" fill src="/hack2.png" />
             </div>
             <div className="flex flex-col">
-              <span className="font-bold text-white">HackerBoost</span>
+              <span className="font-bold dark:text-white text-balck">HackerBoostPunks</span>
               <span className="text-xs text-gray-400">Simple NFT DApp</span>
             </div>
           </Link>

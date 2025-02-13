@@ -8,6 +8,7 @@ import { ethers } from "ethers";
 import CONTRACT_ABI from "../../../artifacts/contracts/HackerBoostPunks.sol/HackerBoostPunks.json";
 
 import contractAddresses from "../../contractAddress.json";
+import toast from "react-hot-toast";
 
 const NETWORK = "sepolia"; // Change to network accordingly
 const CONTRACT_ADDRESS = contractAddresses.Arbitrum[NETWORK];
@@ -21,6 +22,7 @@ function Page() {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
   const [contract, setContract] = useState<ethers.Contract | null>(null);
+  const [minting, setMinting] = useState("Mint NFT")
 
   useEffect(() => {
     if (!connectedAddress) return;
@@ -104,14 +106,14 @@ function Page() {
     // ✅ Listen for the `Minted` event emitted by the mint function
     nftContract.on("Minted", (owner, tokenId) => {
       if (owner.toLowerCase() === connectedAddress?.toLowerCase()) {
-        console.log(`New NFT Minted! Token ID: ${tokenId}`);
+        toast.success(`New NFT Minted!`);
         fetchNFTs(); // ✅ Fetch updated NFTs when a new one is minted
       }
     });
-
-    console.log("Listening for NFT minting events...");
   };
 
+
+  // Function to call the minting function
   const handleMintItem = async () => {
     try {
       if (!window.ethereum) throw new Error("No Ethereum provider found");
@@ -119,17 +121,18 @@ function Page() {
       const provider = new ethers.BrowserProvider(window.ethereum);
       const signer = await provider.getSigner(); // ✅ Get the signer
 
+      // Get the contract instance
       const nftContract = new ethers.Contract(
         CONTRACT_ADDRESS,
         CONTRACT_ABI.abi,
-        signer // ✅ Use the signer
+        signer 
       );
 
       const tx = await nftContract.mint({ value: ethers.parseEther("0.01") });
-      console.log("Minting in progress...");
+      setMinting("Minting...⏳")
       await tx.wait();
+      setMinting("Mint NFT")
 
-      console.log("Minting successful! Fetching updated NFTs...");
       fetchNFTs(); // ✅ Fetch NFTs immediately after minting
     } catch (error) {
       console.error("Minting failed:", error);
@@ -158,7 +161,7 @@ function Page() {
             onClick={handleMintItem}
             disabled={isConnecting}
           >
-            {isConnecting ? "Connecting..." : "Mint NFT"}
+            {isConnecting ? "Connecting..." : `${minting}`}
           </button>
         )}
       </div>
