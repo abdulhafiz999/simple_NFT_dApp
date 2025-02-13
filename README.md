@@ -1,7 +1,46 @@
-# **🚀 HackerBoostPunks NFT DApp - Step-by-Step Tutorial**
+# **HackerBoostPunks NFT DApp - Step-by-Step Tutorial**
 This tutorial will guide you through **building a simple NFT contract** from scratch. You will **clone the repository** and progressively copy and paste code **from this guide** while understanding each step.
 
 ---
+
+## Prerequisites
+
+### Upload Images and Metadata to IPFS
+
+First, we'll upload the images and metadata for our NFTs to IPFS using a service called Pinata.
+
+1. **Sign Up on Pinata:**
+   - Go to [Pinata](https://pinata.cloud/) and sign up for an account.
+
+2. **Upload Images:**
+   - Download the [HackerBoostPunks](https://res.cloudinary.com/hackerboost/raw/upload/v1726847922/hackerboostpunks_ltpsgd.zip) folder to your computer.
+   - On the Pinata Dashboard, click on "Upload" and then select "Folder."
+   - Upload the `HackerBoostPunks` folder and name it `HackerBoostPunks`.
+   - After uploading, you’ll receive a CID (Content Identifier) for your folder.
+
+3. **Verify Upload:**
+   - To verify that the images are successfully uploaded, visit: `https://ipfs.io/ipfs/your-nft-folder-cid` (replace `your-nft-folder-cid` with your folder’s CID).
+
+4. **Upload Metadata:**
+   - Each NFT should have associated metadata stored in a JSON file. For example:
+     ```json
+     {
+       "name": "1",
+       "description": "NFT Collection for HackerBoost Members",
+       "image": "ipfs://CID-OF-THE-HackerBoostPunks-Folder/1.png"
+     }
+     ```
+   - Replace `"CID-OF-THE-HackerBoostPunks-Folder"` with the CID you received.
+
+Now each NFT's metadata has been uploaded to IPFS and pinata should have generated a CID for your metadata folder
+   - We have pre-generated files for metadata for you, you can download them to your computer from `/punksmetadata`, upload these files to pinata and name the folder metadata
+
+5. **Store Metadata CID:**
+   - Once uploaded, copy the CID of the metadata folder and save it. You’ll need this later in the tutorial.
+
+---
+
+## BUILD
 
 ## **📌 Step 1: Define Storage for NFT Metadata**
 NFTs need metadata (name, image, description, etc.). We store the **base URI** for metadata.
@@ -248,22 +287,45 @@ fallback() external payable {}
 
 ---
 
-### **🚀 Next Step**
-📌 ## Deploy the contract 
+## **Next Step**
 
-📌 ## Copy Contract Address to Frontend
+### **Compile the Contract**   
+📌 Compile the contract to check for errors:  
+```sh
+npx hardhat compile
+```
+---
+
+### **Deploy the Contract**  
+📌 Open `ignition/modules/deployHackerBoostPunks.js`.  
+- Set the correct baseURL
+
+📌 Open a new terminal and deploy the contract to arbitrum sepolia:  
+```sh
+npx hardhat ignition deploy "./ignition/modules/deployHackerStakingContract.ts" --network arbitrumSepolia
+```
+This will display the **contract address** in the terminal.
+
+---
+
+## Copy Contract Address to Frontend
 - Copy the contract address shown in the terminal.
 - Paste it inside /frontend/contractAddress.json
 This allows the frontend to interact with the deployed contract.
 
+---
 
-📌 ## Run the app in nft-project/frontend
+## Run the app in nft-project/frontend
 -  Move into the frontend folder and install dependencies
+- The start the app in the development mode
 
 ```
 cd ../frontend
 npm install
-```
 npm run dev
+```
 
-📌 ## Test the app by minting and transfering NFTs between different addresses
+## Test the DApp
+📌 Open the browser and go to http://localhost:3000.
+📌 Mint NFTs by clicking the "Mint NFT" button.
+📌 Transfer NFTs between different accounts using MetaMask.
