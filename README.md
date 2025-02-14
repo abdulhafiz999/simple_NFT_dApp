@@ -13,7 +13,7 @@ First, we'll upload the images and metadata for our NFTs to IPFS using a service
    - Go to [Pinata](https://pinata.cloud/) and sign up for an account.
 
 2. **Upload Images:**
-   - Download the [HackerBoostPunks](https://res.cloudinary.com/hackerboost/raw/upload/v1726847922/hackerboostpunks_ltpsgd.zip) folder to your computer.
+      - Download the [HackerBoostPunks](https://res.cloudinary.com/hackerboost/raw/upload/v1726847922/hackerboostpunks_ltpsgd.zip) folder to your computer.
    - On the Pinata Dashboard, click on "Upload" and then select "Folder."
    - Upload the `HackerBoostPunks` folder and name it `HackerBoostPunks`.
    - After uploading, you’ll receive a CID (Content Identifier) for your folder.
@@ -33,8 +33,7 @@ First, we'll upload the images and metadata for our NFTs to IPFS using a service
    - Replace `"CID-OF-THE-HackerBoostPunks-Folder"` with the CID you received.
 
 Now each NFT's metadata has been uploaded to IPFS and pinata should have generated a CID for your metadata folder
-   - We have pre-generated files for metadata for you, you can download them to your computer from `/punksmetadata`, upload these files to pinata and name the folder metadata
-
+   - We have pre-generated files for metadata for you, you can download them to your computer by clicking [HERE](https://res.cloudinary.com/hackerboost/raw/upload/v1739572956/punksmetadata_gxysku.zip) and upload this metadata folder to pinata.
 5. **Store Metadata CID:**
    - Once uploaded, copy the CID of the metadata folder and save it. You’ll need this later in the tutorial.
 
