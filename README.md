@@ -14,6 +14,7 @@ First, we'll upload the images and metadata for our NFTs to IPFS using a service
 
 2. **Upload Images:**
    - Download the [HackerBoostPunks](https://res.cloudinary.com/hackerboost/raw/upload/v1726847922/hackerboostpunks_ltpsgd.zip) folder to your computer.
+   - Create an account on Pinata and login to your dashboard.
    - On the Pinata Dashboard, click on "Upload" and then select "Folder."
    - Upload the `HackerBoostPunks` folder and name it `HackerBoostPunks`.
    - After uploading, you’ll receive a CID (Content Identifier) for your folder.
