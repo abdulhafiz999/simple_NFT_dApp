@@ -58,7 +58,7 @@ We need to track **total supply**, **maximum NFTs**, and **price per NFT**.
 
 ```solidity
 // 2️⃣ NFT data tracking
-uint256 public totalSupply;
+uint256 public tokenId;
 uint256 public maxTokensIds = 10;
 uint256 public price = 0.01 ether;
 bool public paused;
@@ -142,12 +142,12 @@ function mint() public payable whenNotPaused {
     require(totalSupply < maxTokensIds, "Max supply reached");
     require(msg.value >= price, "Insufficient Ether");
 
-    totalSupply++;
+    tokenId++;
 
-    tokenOwners[totalSupply] = msg.sender;
-    ownedTokens[msg.sender].push(totalSupply);
+    tokenOwners[tokenId] = msg.sender;
+    ownedTokens[msg.sender].push(tokenId);
 
-    emit Minted(msg.sender, totalSupply);
+    emit Minted(msg.sender, tokenId);
 }
 ```
 🔹 **Explanation:**  
@@ -176,23 +176,23 @@ Owners should be able to **transfer** their NFTs.
 
 ```solidity
 // 9️⃣ Function to transfer NFT ownership
-function transfer(uint256 tokenId, address to) public {
-    require(tokenOwners[tokenId] == msg.sender, "Not the token owner");
-    require(to != address(0), "Invalid recipient address");
+function transfer(uint256 _tokenId, address receiver) public {
+    require(tokenOwners[_tokenId] == msg.sender, "Not the token owner");
+    require(receiver != address(0), "Invalid recipient address");
 
-    tokenOwners[tokenId] = to;
+    tokenOwners[_tokenId] = receiver;
 
     uint256[] storage senderTokens = ownedTokens[msg.sender];
     for (uint256 i = 0; i < senderTokens.length; i++) {
-        if (senderTokens[i] == tokenId) {
+        if (senderTokens[i] == _tokenId) {
             senderTokens[i] = senderTokens[senderTokens.length - 1];
             senderTokens.pop();
             break;
         }
     }
-    ownedTokens[to].push(tokenId);
+    ownedTokens[receiver].push(_tokenId);
 
-    emit Transferred(msg.sender, to, tokenId);
+    emit Transferred(msg.sender, receiver, _tokenId);
 }
 ```
 🔹 **Explanation:**  
@@ -207,7 +207,7 @@ Emits an event when **an NFT is transferred**.
 
 ```solidity
 // 10️⃣ Event for NFT Transfers
-event Transferred(address indexed from, address indexed to, uint256 indexed tokenId);
+event Transferred(address indexed from, address indexed receiver, uint256 indexed tokenId);
 ```
 🔹 **Explanation:**  
 - Useful for tracking NFT transfers **on the blockchain**.
@@ -248,9 +248,9 @@ Retrieves **metadata URI** for an NFT.
 
 ```solidity
 // 13️⃣ Function to retrieve token metadata
-function tokenURI(uint256 tokenId) public view returns (string memory) {
-    require(tokenOwners[tokenId] != address(0), "Token does not exist");
-    return string(abi.encodePacked(_baseTokenURI, Strings.toString(tokenId), ".json"));
+function tokenURI(uint256 _tokenId) public view returns (string memory) {
+    require(tokenOwners[_tokenId] != address(0), "Token does not exist");
+    return string(abi.encodePacked(_baseTokenURI, Strings.toString(_tokenId), ".json"));
 }
 ```
 🔹 **Explanation:**  
