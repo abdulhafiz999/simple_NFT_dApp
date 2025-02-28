@@ -4,9 +4,11 @@
 const { buildModule } = require("@nomicfoundation/hardhat-ignition/modules");
 
 module.exports = buildModule("HackerBoostPunksModule", (m) => {
-  const baseURI = "ipfs://bafybeif274l5mhgdi6osmxrhbskxmxtnjq7ekhy2jawbsmpvctoua3zdb4/";
+  const baseURI = "ipfs://bafybeiewvbpr76hwencf3ymwu7muyh3kzim6uiioapvmuou4xe3h5j4njm/";
+  
 
   const hackerBoostPunks = m.contract("HackerBoostPunks", [baseURI]);
 
   return { hackerBoostPunks };
 });
+
