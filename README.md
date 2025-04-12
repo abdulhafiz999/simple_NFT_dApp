@@ -7,7 +7,7 @@ This tutorial will guide you through **building a simple NFT contract** from scr
 
 ### Upload Images and Metadata to IPFS
 
-First, we'll upload the images and metadata for our NFTs to IPFS using a service called Pinata.
+First of all, we'll upload the images and metadata for our NFTs to IPFS using a service called Pinata.
 
 1. **Sign Up on Pinata:**
    - Go to [Pinata](https://pinata.cloud/) and sign up for an account.
